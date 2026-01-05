@@ -50,3 +50,45 @@ body {
     margin-top: 10px;
     color: red;
 }
+/* signup page */
+
+
+.signup-container {
+    /* background: white; */
+    color: white;
+    padding: 30px;
+    width: 350px;
+    border-radius: 10px;
+    box-shadow: 20px 20px 20px 20px rgba(138, 98, 98, 0.2);
+    text-align: center;
+}
+
+.signup-container h2 {
+    margin-bottom: 20px;
+}
+
+.signup-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 10px ;
+}
+
+.signup-container button {
+    width: 100%;
+    padding: 10px;
+    background: #0072ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.signup-container button:hover {
+    background: #005ad1;
+}
+
+#msg {
+    margin-top: 10px;
+    color: red;
+}
