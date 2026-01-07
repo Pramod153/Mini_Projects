@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard | HotelEase</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <h2>HotelEase</h2>
+    <button onclick="logout()">Logout</button>
+</header>
+
+<!-- USER INFO -->
+<section class="dashboard">
+    <div class="card">
+        <h3>Welcome</h3>
+        <p id="username"></p>
+    </div>
+
+    <div class="card">
+        <h3>My Bookings</h3>
+        <p>0</p>
+    </div>
+
+    <div class="card">
+        <h3>Booking Status</h3>
+        <p>No Active Booking</p>
+    </div>
+</section>
+
+<!-- USER ACTIONS -->
+<section class="nav-buttons">
+    <a href="booking.html">Book a Room</a>
+    <a href="billing.html">View Bill</a>
+</section>
+
+<script>
+    // Check login
+    let user = localStorage.getItem("loggedInUser");
+
+    if (!user) {
+        window.location.href = "login.html";
+    }
+
+    document.getElementById("username").innerText = user;
+
+    function logout() {
+        localStorage.removeItem("loggedInUser");
+        window.location.href = "login.html";
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Dashboard</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <h2>Hotel Management Dashboard</h2>
+        <button onclick="logout()">Logout</button>
+    </header>
+
+    <!-- Main Dashboard -->
+    <section class="dashboard">
+
+        <div class="card">
+            <h3>Total Rooms</h3>
+            <p id="totalRooms">50</p>
+        </div>
+
+        <div class="card">
+            <h3>Available Rooms</h3>
+            <p id="availableRooms">30</p>
+        </div>
+
+        <div class="card">
+            <h3>Booked Rooms</h3>
+            <p id="bookedRooms">20</p>
+        </div>
+
+        <div class="card">
+            <h3>Today Check-ins</h3>
+            <p>5</p>
+        </div>
+
+        <div class="card">
+            <h3>Today Check-outs</h3>
+            <p>3</p>
+        </div>
+
+    </section>
+
+    <!-- Navigation Buttons -->
+    <section class="nav-buttons">
+        <a href="rooms.html">Manage Rooms</a>
+        <a href="booking.html">New Booking</a>
+        <a href="customers.html">Customers</a>
+        <a href="billing.html">Billing</a>
+    </section>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

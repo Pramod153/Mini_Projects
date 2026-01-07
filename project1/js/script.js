@@ -1,35 +1,70 @@
-function login() {
-    let user = document.getElementById("uname").value;
-    let password = document.getElementById("pass").value;
 
-    let storedUser = localStorage.getItem("username");
-    let storedPass = localStorage.getItem("password");
 
-    if (user === storedUser && password === storedPass) {
-        alert("User login success");
-        // window.location.href = "dashboard.html";
-    } else {
-        alert("Wrong username or password");
-    }
-}
+
 
 function registerUser() {
     let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
     let confirmPassword = document.getElementById("confirmPassword").value;
 
     if (password !== confirmPassword) {
-        document.getElementById("msg").innerText = "Passwords do not match";
+        alert("Passwords do not match");
         return false;
     }
 
-    // Save user data
-    localStorage.setItem("username", username);
-    localStorage.setItem("password", password);
+    // Check if user already exists
+    if (localStorage.getItem(username)) {
+        alert("Username already exists");
+        return false;
+    }
 
-    alert("Signup Successful!\nWelcome " + name);
+    let user = {
+        name: name,
+        email: email,
+        username: username,
+        password: password,
+        role: "user"
+    };
+
+    // Store user data
+    localStorage.setItem(username, JSON.stringify(user));
+
+    alert("Signup successful! Please login.");
     window.location.href = "../html/login.html";
     return false;
 }
 
+function login() {
+    let username = document.getElementById("uname").value;
+    let password = document.getElementById("pass").value;
+
+    // Admin login (fixed)
+    if (username === "admin" && password === "admin123") {
+        localStorage.setItem("loggedInUser", "admin");
+        window.location.href = "../html/dashboard.html";
+        return;
+    }
+
+    let storedUser = localStorage.getItem(username);
+
+    if (!storedUser) {
+        alert("User not found. Please signup.");
+        return;
+    }
+
+    let user = JSON.parse(storedUser);
+
+    if (user.password === password) {
+        localStorage.setItem("loggedInUser", username);
+        window.location.href = "user_dashboard.html";
+    } else {
+        alert("Invalid password");
+    }
+}
+
+function logout() {
+    alert("Logged out successfully");
+    window.location.href = "../html/login.html";
+}
