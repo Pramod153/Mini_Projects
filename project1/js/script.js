@@ -68,3 +68,31 @@ function logout() {
     alert("Logged out successfully");
     window.location.href = "../html/login.html";
 }
+function updatePrice() {
+    let roomPrice = document.getElementById("room").value;
+    let guests = document.getElementById("guests").value;
+
+    if (roomPrice && guests) {
+        let total = roomPrice * guests;
+        document.getElementById("price").innerText = total;
+    } else {
+        document.getElementById("price").innerText = 0;
+    }
+}
+
+function bookRoom() {
+    let name = document.getElementById("name").value;
+    let room = document.getElementById("room").selectedOptions[0].text;
+    let guests = document.getElementById("guests").value;
+    let total = document.getElementById("price").innerText;
+
+    alert(
+        "Booking Successful!\n\n" +
+        "Guest Name: " + name + "\n" +
+        "Room Type: " + room + "\n" +
+        "Guests: " + guests + "\n" +
+        "Total Amount: ₹" + total
+    );
+
+    window.location.href = "dashboard.html";
+}
