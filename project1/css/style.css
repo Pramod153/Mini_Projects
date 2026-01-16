@@ -200,13 +200,13 @@ a {
     align-items: center;
 }
 
-.navbar button {
+/* .navbar button {
     padding: 8px 15px;
     border: none;
     background: #e74c3c;
     color: white;
     cursor: pointer;
-}
+} */
 
 .dashboard {
     display: grid;
@@ -285,7 +285,7 @@ input, select {
     margin-top: 5px;
 }
 
-button {
+/* button {
     width: 100%;
     padding: 10px;
     background: #27ae60;
@@ -298,4 +298,4 @@ button {
 
 button:hover {
     background: #219150;
-}
+} */

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Billing | HotelEase</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <h2>HotelEase</h2>
+    <button onclick="logout()">Logout</button>
+</header>
+
+<!-- BILL SECTION -->
+<section class="dashboard">
+    <div class="card bill-card">
+        <h3>Billing Details</h3>
+
+        <p><strong>Username:</strong> <span id="username"></span></p>
+        <p><strong>Room Type:</strong> <span id="room"></span></p>
+        <p><strong>Guests:</strong> <span id="guests"></span></p>
+        <p><strong>Check-In:</strong> <span id="checkin"></span></p>
+        <p><strong>Check-Out:</strong> <span id="checkout"></span></p>
+        <p><strong>Total Amount:</strong> ₹<span id="amount"></span></p>
+
+        <button onclick="goBack()">Back to Dashboard</button>
+    </div>
+</section>
+
+<script>
+    // Check login
+    let user = localStorage.getItem("loggedInUser");
+    if (!user) {
+        window.location.href = "login.html";
+    }
+
+    document.getElementById("username").innerText = user;
+
+    // Fetch booking
+    let booking = localStorage.getItem("booking_" + user);
+
+    if (!booking) {
+        alert("No booking found!");
+        window.location.href = "user_dashboard.html";
+    }
+
+    booking = JSON.parse(booking);
+
+    document.getElementById("room").innerText = booking.roomType;
+    document.getElementById("guests").innerText = booking.guests;
+    document.getElementById("checkin").innerText = booking.checkIn;
+    document.getElementById("checkout").innerText = booking.checkOut;
+    document.getElementById("amount").innerText = booking.totalAmount;
+
+    function logout() {
+        localStorage.removeItem("loggedInUser");
+        window.location.href = "login.html";
+    }
+
+    function goBack() {
+        window.location.href = "user_dashboard.html";
+    }
+</script>
+
+</body>
+</html>

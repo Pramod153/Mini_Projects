@@ -81,18 +81,28 @@ function updatePrice() {
 }
 
 function bookRoom() {
-    let name = document.getElementById("name").value;
-    let room = document.getElementById("room").selectedOptions[0].text;
-    let guests = document.getElementById("guests").value;
-    let total = document.getElementById("price").innerText;
+    let loggedUser = localStorage.getItem("loggedInUser");
 
-    alert(
-        "Booking Successful!\n\n" +
-        "Guest Name: " + name + "\n" +
-        "Room Type: " + room + "\n" +
-        "Guests: " + guests + "\n" +
-        "Total Amount: ₹" + total
-    );
+    if (!loggedUser) {
+        alert("Please login first");
+        window.location.href = "login.html";
+        return;
+    }
 
-    window.location.href = "dashboard.html";
+    let bookingData = {
+        guestName: document.getElementById("name").value,
+        roomType: document.getElementById("room").selectedOptions[0].text,
+        guests: document.getElementById("guests").value,
+        checkIn: document.getElementById("checkin").value,
+        checkOut: document.getElementById("checkout").value,
+        totalAmount: document.getElementById("price").innerText,
+        status: "Confirmed"
+    };
+
+    // 🔑 STORE booking using username
+    localStorage.setItem("booking_" + loggedUser, JSON.stringify(bookingData));
+
+    alert("Booking Successful!");
+    window.location.href = "user_dashboard.html";
 }
+
