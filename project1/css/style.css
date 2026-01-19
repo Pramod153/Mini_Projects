@@ -284,6 +284,17 @@ input, select {
     padding: 8px;
     margin-top: 5px;
 }
+@media print {
+    .navbar1,
+    button {
+        display: none;
+    }
+
+    .bill-card {
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+}
 
 /* button {
     width: 100%;

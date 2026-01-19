@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Billing | HotelEase</title>
     <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 </head>
 <body>
 
@@ -24,8 +26,10 @@
         <p><strong>Check-In:</strong> <span id="checkin"></span></p>
         <p><strong>Check-Out:</strong> <span id="checkout"></span></p>
         <p><strong>Total Amount:</strong> ₹<span id="amount"></span></p>
-
         <button onclick="goBack()">Back to Dashboard</button>
+        <button onclick="printBill()">Print Bill</button>
+        <button onclick="downloadPDF()">Download PDF</button>
+
     </div>
 </section>
 
@@ -62,6 +66,26 @@
     function goBack() {
         window.location.href = "user_dashboard.html";
     }
+
+    function printBill() {
+        window.print();
+    }
+
+    function downloadPDF() {
+    const bill = document.querySelector(".bill-card");
+
+    const options = {
+        margin: 0.5,
+        filename: 'HotelEase_Bill.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+
+    html2pdf().set(options).from(bill).save();
+    }
+
+
 </script>
 
 </body>
