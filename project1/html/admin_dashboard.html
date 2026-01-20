@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard | HotelEase</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="navbar1">
+    <h2>HotelEase – Admin Panel</h2>
+    <button class="btn" onclick="logout()">Logout</button>
+</header>
+
+<section class="dashboard">
+    <div class="card">
+        <h3>Total Bookings</h3>
+        <p id="totalBookings">0</p>
+    </div>
+
+    <div class="card">
+        <h3>Total Revenue</h3>
+        <p>₹<span id="totalRevenue">0</span></p>
+    </div>
+</section>
+
+<section style="padding: 20px;">
+    <h2 style="text-align:center;">All Bookings</h2>
+
+    <table border="1" width="100%" cellpadding="10" style="background:white;">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Room</th>
+                <th>Guests</th>
+                <th>Check-In</th>
+                <th>Check-Out</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Payment</th>
+            </tr>
+        </thead>
+        <tbody id="bookingTable"></tbody>
+    </table>
+</section>
+
+<script>
+    let admin = localStorage.getItem("loggedInUser");
+
+    if (admin !== "admin") {
+        alert("Unauthorized access!");
+        window.location.href = "login.html";
+    }
+
+    let table = document.getElementById("bookingTable");
+    let totalBookings = 0;
+    let totalRevenue = 0;
+
+    for (let key in localStorage) {
+        if (key.startsWith("booking_")) {
+            let booking = JSON.parse(localStorage.getItem(key));
+            totalBookings++;
+
+            if (booking.paymentStatus === "Paid") {
+                totalRevenue += Number(booking.totalAmount);
+            }
+
+            let row = `
+                <tr>
+                    <td>${key.replace("booking_", "")}</td>
+                    <td>${booking.roomType}</td>
+                    <td>${booking.guests}</td>
+                    <td>${booking.checkIn}</td>
+                    <td>${booking.checkOut}</td>
+                    <td>₹${booking.totalAmount}</td>
+                    <td>${booking.status}</td>
+                    <td>${booking.paymentStatus}</td>
+                </tr>
+            `;
+
+            table.innerHTML += row;
+        }
+    }
+
+    document.getElementById("totalBookings").innerText = totalBookings;
+    document.getElementById("totalRevenue").innerText = totalRevenue;
+
+    function logout() {
+        localStorage.removeItem("loggedInUser");
+        window.location.href = "login.html";
+    }
+</script>
+
+</body>
+</html>

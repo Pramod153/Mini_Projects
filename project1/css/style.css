@@ -439,3 +439,108 @@ button:hover {
         border: 2px solid #000;
     }
 }
+
+/* admin dashboard */
+/* ===============================
+   ADMIN DASHBOARD STYLES
+   =============================== */
+
+/* Page background fix */
+/* body {
+    background: linear-gradient(120deg, #e3f2fd, #f5f7fa);
+} */
+
+/* Dashboard cards */
+.dashboard .card {
+    background: linear-gradient(145deg, #ffffff, #f1f4f8);
+    border-radius: 14px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+    border-top: 5px solid #1e3c72;
+}
+
+.dashboard .card h3 {
+    font-size: 18px;
+    color: #1e3c72;
+    margin-bottom: 10px;
+}
+
+.dashboard .card p {
+    font-size: 28px;
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+/* Booking table section */
+section h2 {
+    margin: 25px 0 15px;
+    color: #1e3c72;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+table thead {
+    background: #1e3c72;
+    color: white;
+}
+
+table th, table td {
+    padding: 12px 10px;
+    text-align: center;
+    font-size: 14px;
+}
+
+table tr:nth-child(even) {
+    background: #f5f9ff;
+}
+
+table tr:hover {
+    background: #e3f2fd;
+}
+
+/* Payment status colors */
+td:last-child {
+    font-weight: bold;
+}
+
+td:last-child:contains("Paid") {
+    color: #2e7d32;
+}
+
+td:last-child:contains("Unpaid") {
+    color: #c62828;
+}
+
+/* Navbar button */
+.navbar1 .btn {
+    background: #e74c3c;
+    border-radius: 6px;
+    padding: 8px 16px;
+    color: white;
+    cursor: pointer;
+}
+
+.navbar1 .btn:hover {
+    background: #c0392b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    table th, table td {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+}

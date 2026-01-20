@@ -43,7 +43,7 @@ function login() {
     // Admin login (fixed)
     if (username === "admin" && password === "admin123") {
         localStorage.setItem("loggedInUser", "admin");
-        window.location.href = "../html/dashboard.html";
+        window.location.href = "../html/admin_dashboard.html";
         return;
     }
 
