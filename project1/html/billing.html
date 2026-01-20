@@ -26,9 +26,14 @@
         <p><strong>Check-In:</strong> <span id="checkin"></span></p>
         <p><strong>Check-Out:</strong> <span id="checkout"></span></p>
         <p><strong>Total Amount:</strong> ₹<span id="amount"></span></p>
+        <p><strong>Base Amount:</strong> ₹<span id="base"></span></p>
+        <p><strong>GST (18%):</strong> ₹<span id="gst"></span></p>
+        <p><strong>Payment Status:</strong> <span id="payment"></span></p>
+
         <button onclick="goBack()">Back to Dashboard</button>
         <button onclick="printBill()">Print Bill</button>
         <button onclick="downloadPDF()">Download PDF</button>
+        <button onclick="markPaid()">Pay Now</button>
 
     </div>
 </section>
@@ -57,6 +62,12 @@
     document.getElementById("checkin").innerText = booking.checkIn;
     document.getElementById("checkout").innerText = booking.checkOut;
     document.getElementById("amount").innerText = booking.totalAmount;
+    document.getElementById("base").innerText = booking.baseAmount;
+    document.getElementById("gst").innerText = booking.gstAmount;
+    document.getElementById("payment").innerText = booking.paymentStatus;
+    document.getElementById("payment").classList.add("paid");
+
+
 
     function logout() {
         localStorage.removeItem("loggedInUser");
@@ -84,6 +95,13 @@
 
     html2pdf().set(options).from(bill).save();
     }
+    function markPaid() {
+    booking.paymentStatus = "Paid";
+    localStorage.setItem("booking_" + user, JSON.stringify(booking));
+    alert("Payment Successful!");
+    location.reload();
+    }
+
 
 
 </script>

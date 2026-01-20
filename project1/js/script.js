@@ -89,20 +89,27 @@ function bookRoom() {
         return;
     }
 
+    let baseAmount = Number(document.getElementById("price").innerText);
+    let gst = baseAmount * 0.18;
+    let finalAmount = baseAmount + gst;
+
     let bookingData = {
         guestName: document.getElementById("name").value,
         roomType: document.getElementById("room").selectedOptions[0].text,
         guests: document.getElementById("guests").value,
         checkIn: document.getElementById("checkin").value,
         checkOut: document.getElementById("checkout").value,
-        totalAmount: document.getElementById("price").innerText,
+        baseAmount: baseAmount,
+        gstAmount: gst.toFixed(2),
+        totalAmount: finalAmount.toFixed(2),
+        paymentStatus: "Unpaid",
         status: "Confirmed"
     };
 
-    // 🔑 STORE booking using username
     localStorage.setItem("booking_" + loggedUser, JSON.stringify(bookingData));
 
     alert("Booking Successful!");
     window.location.href = "user_dashboard.html";
 }
+
 
